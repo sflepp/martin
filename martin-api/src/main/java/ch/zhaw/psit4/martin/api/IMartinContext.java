@@ -4,8 +4,6 @@ import java.util.List;
 
 import ch.zhaw.psit4.martin.api.types.MEventData;
 import ch.zhaw.psit4.martin.api.types.output.MOutput;
-import reactor.bus.Event;
-import reactor.fn.Consumer;
 
 /**
  * The MArtIn Context provided to MArtIn Plugins.

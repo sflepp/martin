@@ -12,8 +12,6 @@ import ch.zhaw.psit4.martin.api.MEventListener;
 import ch.zhaw.psit4.martin.api.MartinPlugin;
 import ch.zhaw.psit4.martin.api.types.MEventData;
 import ch.zhaw.psit4.martin.api.types.output.MOutput;
-import reactor.bus.Event;
-import reactor.fn.Consumer;
 
 /**
  * Tests a possible implementation of {@link MartinPlugin}.
