@@ -1,0 +1,5 @@
+parameter_id,name,type,function_id
+1,time,ch.zhaw.psit4.martin.api.types.Timestamp,1
+2,location,ch.zhaw.psit4.martin.api.types.Location,1
+3,name1,ch.zhaw.psit4.martin.api.types.Person,2
+4,name2,ch.zhaw.psit4.martin.api.types.Person,2

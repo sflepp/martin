@@ -1,0 +1,42 @@
+{
+	"Functions": [
+		{
+			"Name": "hallo",
+			"Description": "Greets the greeter.",
+			"Keywords": [
+				"hello",
+				"greetings",
+				"hey",
+				"howdy",
+				"hi-ya",
+				"whazzup"
+			],
+			"Parameter": [
+				{
+					"Name": "name1",
+					"Required": "true",
+					"Type": "ch.zhaw.psit4.martin.api.types.MPerson",
+					"Tokens-regex": "",
+                    "Keywords": [
+                        "name"
+                    ]
+				},
+				{
+					"Name": "name2",
+					"Required": "false",
+					"Type": "ch.zhaw.psit4.martin.api.types.MPerson",
+					"Tokens-regex": "",
+                    "Keywords": [
+                        "namen"
+                    ]
+				}
+			],
+			"Examples": [
+				{
+                    "Call" : "Hello Martin, I am Jake!",
+                    "Description" : "Greets you back"
+                }
+			]
+		}
+	]
+}

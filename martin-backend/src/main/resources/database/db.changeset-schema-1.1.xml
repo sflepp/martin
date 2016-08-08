@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+
+	<!-- Include previous version  -->
+	<include file="db.changeset-schema-1.0.xml" relativeToChangelogFile="true"/> 
+    
+
+
+
+	<!-- Make changes to schema -->
+    <changeSet author="fleppsim" id="schema-1.1.0">
+        <dropForeignKeyConstraint baseTableName="history_item" constraintName="fk_history_items_request"/>
+        <dropTable cascadeConstraints="true"
+            tableName="request"/>
+        <createTable tableName="request">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="command" type="MEDIUMTEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="request_id" baseTableName="history_item" constraintName="fk_history_items_request" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="request"/>
+    </changeSet>
+
+    <changeSet author="fleppsim" id="schema-1.1.1">
+		<dropForeignKeyConstraint baseTableName="history_item" constraintName="fk_history_items_response"/>
+        <dropTable cascadeConstraints="true"
+            tableName="response"/>
+
+   
+        <createTable tableName="response">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="responsetext" type="MEDIUMTEXT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="response_id" baseTableName="history_item" constraintName="fk_history_items_response" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="response"/>
+    </changeSet>
+
+</databaseChangeLog>

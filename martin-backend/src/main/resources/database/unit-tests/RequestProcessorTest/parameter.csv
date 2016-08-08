@@ -1,0 +1,5 @@
+id,name,type,function_id,required
+1,time,ch.zhaw.psit4.martin.api.types.MTimestamp,1,false
+2,location,ch.zhaw.psit4.martin.api.types.MLocation,1,false
+3,name1,ch.zhaw.psit4.martin.api.types.MPerson,2,false
+4,name2,ch.zhaw.psit4.martin.api.types.MPerson,2,false

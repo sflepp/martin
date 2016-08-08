@@ -1,0 +1,3 @@
+function_id,name,description,plugin_id
+1,"getWeatherAtLocation","Gives you the weather at your location",1
+2,"greeting","Greets a person",2

@@ -1,0 +1,30 @@
+{
+	"Functions": [
+		{
+			"Name": "timerDuration",
+			"Description": "Starts a timer",
+			"Keywords": [
+				"timer",
+				"reminder",
+				"remind"
+			],
+			"Parameter": [
+				{
+					"Name": "duration",
+					"Required": "true",
+					"Type": "ch.zhaw.psit4.martin.api.types.MDuration",
+					"Tokens-regex": "",
+                    "Keywords": [
+                        "duration"
+                    ]
+				}
+			],
+			"Examples": [
+				{
+                    "Call" : "Start a 5 minutes timer.",
+                    "Description" : "Reminds you after 5 minutes."
+                }
+			]
+		}
+	]
+}

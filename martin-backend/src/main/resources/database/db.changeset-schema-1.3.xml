@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+
+	<!-- Include previous version -->
+	<include file="db.changeset-schema-1.2.xml"
+		relativeToChangelogFile="true" />
+
+
+
+
+	<!-- Make changes to schema -->
+	<changeSet author="fleppsim" id="schema-1.3.0">
+		<addColumn tableName="author">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="example_call">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="function">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="history_item">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="keyword">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="parameter">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="plugin">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="request">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+		<addColumn tableName="response">
+			<column name="created_at" type="TIMESTAMP" />
+			<column name="updated_at" type="TIMESTAMP" />
+			<column name="version" type="INT" />
+		</addColumn>
+	</changeSet>
+
+</databaseChangeLog>

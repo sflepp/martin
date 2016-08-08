@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+
+    <!-- Inserts initial data into the database -->
+    <changeSet author="fabiadan" id="data-1.2.1">
+        <sql>SET FOREIGN_KEY_CHECKS=0</sql>
+    	<loadData tableName="author" file="db.changeset-data-1.2/author.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="example_call" file="db.changeset-data-1.2/example_call.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="function" file="db.changeset-data-1.2/function.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="function_has_keyword" file="db.changeset-data-1.2/function_has_keyword.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="function_has_keyword" file="db.changeset-data-1.2/historyItem.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="keyword" file="db.changeset-data-1.2/keyword.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="parameter" file="db.changeset-data-1.2/parameter.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="parameter_has_keyword" file="db.changeset-data-1.2/parameter_has_keyword.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="plugin" file="db.changeset-data-1.2/plugin.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="request" file="db.changeset-data-1.2/request.csv" relativeToChangelogFile="true"/>
+    	<loadData tableName="response" file="db.changeset-data-1.2/response.csv" relativeToChangelogFile="true"/>
+        <sql>SET FOREIGN_KEY_CHECKS=1</sql>
+    </changeSet>
+
+</databaseChangeLog>

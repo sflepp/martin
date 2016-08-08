@@ -1,0 +1,5 @@
+id,name,type,function_id,required
+1,Time,keyword,1,true
+2,Location,MARTIN.KEYWORD.LOCATIONNAME,1,true
+3,more,keyword,1,true
+4,name,keyword,2,true

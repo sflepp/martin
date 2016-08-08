@@ -1,0 +1,20 @@
+<div class="martin-statement">
+	<div class="response">
+		<!-- <span class="date">{{ event.response.formattedDate }}</span> -->
+		{% for response in event.response.responses %}
+			{% include "outputTypes/" + response.type.toLowerCase() + ".html" %}
+		{% endfor %}
+	</div>
+
+	<div class="request-container">
+		<span class="date">{{ event.request.formattedDate }}</span>
+		<div class="request">
+			{% if event.request.command %}
+				{{ event.request.command }}
+			{% else %}
+				<i>silence</i>
+			{% endif %}
+		</div>
+	</div>
+	
+</div>

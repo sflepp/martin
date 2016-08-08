@@ -1,0 +1,5 @@
+function_id,keyword_id,description
+1,1,Weather app
+1,7,calls the weather app
+1,8,calls the weather app
+2,4,matches hey to the Hello martin plugin

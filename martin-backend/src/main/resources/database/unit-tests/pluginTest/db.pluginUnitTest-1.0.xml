@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+
+   <!-- Include latest database schema only, no data -->
+   <include file="../../db.changeset-schema-latest.xml" relativeToChangelogFile="true"/> 
+
+
+    <!-- Load test-data into table keyword -->
+    <changeSet author="camenfa1" id="parameter-unitTest-1">
+        <loadData tableName="keyword" relativeToChangelogFile="true" file="keyword.csv" />
+        <loadData tableName="author" relativeToChangelogFile="true" file="author.csv" />
+        <loadData tableName="plugin" relativeToChangelogFile="true" file="plugin.csv" />
+        <loadData tableName="function" relativeToChangelogFile="true" file="function.csv" />
+        <loadData tableName="function_has_keyword" relativeToChangelogFile="true" file="function_has_keyword.csv" />
+        <loadData tableName="parameter" relativeToChangelogFile="true" file="parameter.csv" />
+        <loadData tableName="parameter_has_keyword" relativeToChangelogFile="true" file="parameter_has_keyword.csv" />
+    </changeSet>
+
+</databaseChangeLog>

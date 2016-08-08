@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
+<!-- DTD available under MArtIn\distributable\plugin.dtd -->
+<plugin id="zhaw.weatherPlugin" version="0.0.1">
+ 	<requires>
+		<import plugin-id="ch.zhaw.psit4.martin.api" />
+	</requires>
+	<runtime>
+		<library id="weatherPlugin" path="classes/" type="code" />
+		<library type="resources" path="res/" id="resources" />
+	</runtime>
+ 
+	<extension plugin-id="ch.zhaw.psit4.martin.api" point-id="MartinPlugin"
+		id="d54f0bc3-5642-425d-bcfd-44a28131ca43">
+		<parameter id="class"
+			value="zhaw.weatherPlugin.WeatherPlugin" />
+		<parameter id="name" value="Weather Plugin" />
+		<parameter id="description"
+			value="A plugin that checks the current weather in a given location." />
+		<parameter id="author" value="Gioele Moretti" />
+		<parameter id="e-mail" value="gioretti@students.zhaw.ch" />
+		<parameter id="date" value="27-04-2016" />
+	</extension>
+</plugin>

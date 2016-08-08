@@ -1,0 +1,10 @@
+{
+	"paths": [
+		"./plugins",
+		"../plugins",
+		"../../plugins",
+		"../../../plugins",
+		"/var/lib/jenkins/workspace/MArtIn/plugins",
+		"/var/lib/jenkins/jobs/MArtIn/workspace/backend/plugins"
+	]
+}

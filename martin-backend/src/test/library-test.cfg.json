@@ -1,0 +1,9 @@
+{
+	"paths": [
+		".",
+		"..",
+		"/var/lib/jenkins/workspace/MArtIn",
+		"classpath:.",
+		"classpath:.."
+	]
+}

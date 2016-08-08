@@ -1,0 +1,4 @@
+example_call,description,function_id
+"Hello Martin, my name is Peter.","Say Hello to MArtIn",2
+"Was it rainy yesterday in Zurich?","Ask for current weather updates",1
+"What's the weather today in Zürich?","Ask for current weather updates",1

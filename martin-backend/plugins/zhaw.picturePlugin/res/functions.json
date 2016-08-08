@@ -1,0 +1,27 @@
+{
+    "Functions": [
+        {
+            "Name": "picture",
+            "Description": "Return an image of something.",
+            "Keywords": [
+                "picture",
+                "image",
+                "Show"
+            ],
+            "Parameter": [
+                {
+                    "Name": "picture",
+                    "Required": "true",
+                    "Type": "ch.zhaw.psit4.martin.api.types.MNominalModifier",
+                    "Tokens-regex": "",
+                    "Keywords": []
+                }
+            ],
+            "Examples": [{
+                    "Call" : "Show me a picture of a dog.",
+                    "Description" : "Gets a picture of a dog"
+                }
+            ]
+        }
+    ]
+}

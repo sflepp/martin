@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+
+   <!-- Includes the version of the database to be used on the master-branch -->
+
+   <include file="db.changeset-schema-latest.xml" relativeToChangelogFile="true"/> 
+   <!-- <include file="src/main/resources/database/db.changeset-data-latest.xml"/> -->
+
+
+</databaseChangeLog>

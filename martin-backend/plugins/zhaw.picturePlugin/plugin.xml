@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
+<!-- DTD available under MArtIn\distributable\plugin.dtd -->
+<plugin id="zhaw.picturePlugin" version="0.0.1">
+    <requires>
+        <import plugin-id="ch.zhaw.psit4.martin.api" />
+    </requires>
+    <runtime>
+        <library id="picturePlugin" path="classes/" type="code" />
+        <library type="resources" path="res/" id="resources" />
+    </runtime>
+ 
+    <extension plugin-id="ch.zhaw.psit4.martin.api" point-id="MartinPlugin"
+        id="c4789a78-93a7-497d-92d2-13d6b3dbdf50">
+        <parameter id="class"
+            value="zhaw.picturePlugin.PicturePlugin" />
+        <parameter id="name" value="PicturePlugin" />
+        <parameter id="description"
+            value="A plugin that search for you an image" />
+        <parameter id="author" value="Marco Covolan" />
+        <parameter id="e-mail" value="covolmar@students.zhaw.ch" />
+        <parameter id="date" value="23-05-2016" />
+    </extension>
+</plugin>

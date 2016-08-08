@@ -1,0 +1,638 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Project MArtIn API Dokumentation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Project MArtIn API Dokumentation</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="javascript:window.open('','_self').close();">Close Tab</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Plugin List Section -->
+    <section id="apiSection" class="api-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>API-Dokumentation</h1>
+                </div>
+                <div id="API-documantation-text" class="col-lg-offset-3 col-lg-6">
+                	<h2>Übersicht</h2>
+                	<ul>
+					<li><a href="#Grundstzliches_2">Grundsätzliches</a>
+						<ul>
+						<li><a href="#Datei_plugindtd_DocumentTypeDefinition_14">Datei plugin.dtd (Document-Type-Definition</a></li>
+						<li><a href="#Datei_martinapiversionjar_Java_Archive_17">Datei martin-api-&lt;version&gt;.jar (Java Archive)</a></li>
+						</ul>
+					</li>
+					<li><a href="#PluginErstellung_20">Plugin-Erstellung</a>
+						<ul>
+						<li><a href="#PluginCode_23">Plugin-Code</a></li>
+						<li><a href="#Datei_pluginxml_61">Datei plugin.xml</a></li>
+						<li><a href="#Datei_functionsjson_154">Datei functions.json</a></li>
+						</ul>
+					</li>
+					<li><a href="#PluginAnbindung_129">Plugin-Anbindung</a>
+						<ul>
+						<li><a href="#Ordnerstruktur_9">Ordnerstruktur</a></li>
+						<li><a href="#Manuell_30">Manuell</a></li>
+						<li><a href="#Installer_33">Installer</a></li>
+						</ul>
+					</li>
+					<li><a href="#MartinTypes_Datentypen_194">MartinTypes (Datentypen)</a>
+						<ul>
+						<li><a href="#Location_198">MLocation</a></li>
+						<li><a href="#Timestamp_210">MTimestamp</a></li>
+						<li><a href="#Number_220">MNumber</a></li>
+						<li><a href="#Person_231">MPerson</a></li>
+						<li><a href="#Duration_240">MDuration</a></li>
+						<li><a href="#Organization_249">MOrganization</a></li>
+						<li><a href="#Set_258">MSet</a></li>
+						<li><a href="#Percent_265">MPercent</a></li>
+						<li><a href="#Ordinal_273">MOrdinal</a></li>
+						<li><a href="#Misc_281">MMisc</a></li>
+						</ul>
+					</li>
+					</ul>
+					<h2><a id="Grundstzliches_2"></a>Grundsätzliches</h2>
+					<p>MArtIn benutzt die <a href="http://jpf.sourceforge.net/">JPF-Bibliothek</a> für die Einbindung von Modulen. Im folgenden Text werden wir Module immer Plugins nennen. Alles was du benötigst, um ein MArtIn Plugin zu entwickeln befindet sich im <code>./distributable/target</code> Ordner. Der Ordner enthält folgende Dateien:</p>
+					<pre>
+<code class="language-java">./distributable
+	|_ /src
+	|_ /target
+	|  |_ plugin.dtd
+	|  |_ martin-api-&lt;version&gt;.jar
+	|_ pom.xml</code>
+					</pre>
+					<h3><a id="Datei_plugindtd_DocumentTypeDefinition_14"></a>Datei plugin.dtd (Document-Type-Definition)</h3>
+					<p>Definiert die Struktur des XML-Files für dein Plugin. Die Datei plugin.xml ist das Herzstück jedes Plugins, halte dich unbedingt an die vorgegebene Struktur, um Kompatibilitätsprobleme zu vermeiden. Detaillierte Informationen entnimmst du den Kommentaren im File selbst oder der <a href="http://jpf.sourceforge.net/tutorial.html">JPF-Tutorial-Seite</a>.</p>
+					<h3><a id="Datei_martinapiversionjar_Java_Archive_17"></a>Datei martin-api-&lt;version&gt;.jar (Java Archive)</h3>
+					<p>Beinhaltet die Klassen und Interfaces, über welche dein Plugin mit MArtIn kommunizieren kann. Um auf die Objekte zugreifen zu können, musst du die Bibliothek lediglich in einem Projekt implementieren.</p>
+					<h2><a id="PluginErstellung_20"></a>Plugin-Erstellung</h2>
+					<p>Grundsätzlich kannst du dein Plugin nach <a href="http://jpf.sourceforge.net/tutorial.html">diesem Tutorial</a> entwickeln, jedoch braucht es am Ende noch einige zusätzliche Schritte, um es mit MArtIn kompatibel zu machen.</p>
+					<h3><a id="PluginCode_23"></a>Plugin-Code</h3>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MartinPlugin</span></span>{
+    <span class="hljs-keyword">private</span> IMartinContext context;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> active;
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">activate</span><span class="hljs-params">(IMartinContext context)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">this</span>.context = context;     
+        <span class="hljs-keyword">this</span>.active = <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initializeRequest</span><span class="hljs-params">(String feature, <span class="hljs-keyword">long</span> requestID)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">if</span>(active) {
+            TestPluginWork feature1 = <span class="hljs-keyword">new</span> TestPluginWork(requestID);
+            context.registerWorkItem(feature1);
+        }
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deactivate</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">this</span>.active = <span class="hljs-keyword">false</span>;
+    }
+}
+</code></pre>
+<ul>
+<li><code>public void activate(IMartinContext context)</code> wird bei der Initialisierung des Plugins aufgerufen und übergibt dem Plugin eine Referenz auf den Kontext der MArtIn API. Dieses Objekt erlaubt die Kommunikation mit MArtIn und sollte deswegen in einer lokalen Variable abgespeichert werden. Ausserdem wird im Beispiel ein flag auf true gesetzt, welches signalisiet, dass das Plugin aktiv ist.</li>
+<li><code>public void initializeRequest(String feature, long requestID)</code> wird aufgerufen, wenn MArtIn ein Feature des Plugins in Anspruch nehmen möchte. Hier kann das Plugin Features in Form von Callbacks für MArtIn registrieren. MArtIn spezifiziert hierbei das auszuführende Feature und übergibt die requestID. Grundsätzlich kann ein Plugin pro Request mehrere Features initialiseren, es wird jedoch geraten immer nur ein Feature zu registrieren.</li>
+<li><code>TestPluginWork workItem = new TestPluginWork(requestID);</code> implementiert Callback-Objekt, welches nacher dem Context übergeben werden kann. Dabei wird die requestID dem Task übergeben, damit MArtIn den Task einem Request zuordnen kann.</li>
+<li><code>public void deactivate()</code> wird beim Entladen des Pluins aufgeufen. Im Beispiel wird ein flag auf false gesetzt, welches signalisiet, ob das Plugin aktiv ist. Dies ist nicht nötig, jedoch der Sauberkeit halber empfohlen.</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestPluginWork</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WorkItem</span></span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TestPluginWork</span><span class="hljs-params">(<span class="hljs-keyword">long</span> requestID)</span> </span>{
+        <span class="hljs-keyword">super</span>(requestID);
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialize</span><span class="hljs-params">(Map&lt;String, IBaseType&gt; args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">//...</span>
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">execute</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-comment">//...</span>
+    }
+}
+</code></pre>
+<ul>
+<li>In <code>initialize</code> werden die Argumente an das Plugin übergeben, welche diese im plugin.xml definiert (siehe weiter unten)</li>
+<li>In <code>execute</code> werden alle Berechnungen des Plugins ausgeführt. Dies ist sozusagen die main-Methode des Plugins. Nachdem das Plugin seine Arbeit abgeschlossen hat, gibt es eine Antwort an MArtIn in Form eines Strings. Diese Methode muss terminieren, sie kann jedoch über den MartinContext mit MArtIn kommunizieren, falls sie eine Referenz auf das Objekt besitzt.</li>
+</ul>
+<p>Alle Methoden können eine Exception werfen, ist dies der Fall, wird die Ausführing des Plugins von MArtIn unterbrochen, ausserdem wird MArtIn die ausführung auch nach einem Timeout (3 Minuten) unterbrechen.</p>
+<p>Bemerkung: Die Klasse WorkItem hat eine methode setID(long id). Diese darf NICHT manuell aufgerufen werden, da dadurch das WorkItem von MArtIn automatisch ignoriert wird, da ihre id nur ein Mal gesetzt werden kann.</p>
+					
+										<h3><a id="Datei_pluginxml_61"></a>Datei plugin.xml</h3>
+					<p>Als nächstes erstellst du eine XML-Datei mit dem Namen plugin.xml. Sie muss den Regeln aus der plugin.dtd Datei folgen.</p>
+					<pre>
+<code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">plugin</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"ch.orgamization.psit4.martin.myplugin"</span> <span class="hljs-attribute">version</span>=<span class="hljs-value">"0.0.1"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"ch.orgamization.psit4.martin.myplugin.PluginInplementation"</span>&gt;</span></code>
+					</pre>
+					<ul>
+					<li><strong>ch.orgamization.psit4.martin.myplugin</strong> ist der eindeutige Bezeichner deines Plugins.</li>
+					<li><strong>0.0.1</strong> bezeichet die Plugin-Version.</li>
+					<li><strong>ch.orgamization.psit4.martin.meinplugin.PluginInplementation</strong> bezeichnet die Startklasse des Plugins (kann in den meisten Fällen weggelassen werden).</li>
+					</ul>
+					<pre>
+<code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">requires</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">import</span> <span class="hljs-attribute">plugin-id</span>=<span class="hljs-value">"ch.zhaw.psit4.martin.api"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">requires</span>&gt;</span></code>
+					</pre>
+					<p>Diese Zeile erlaubt es MArtIn dein Plugin als API-kompatibel zu erkennen. Diese Abhängigkeit ist die einzige, die absolut notwendig ist. Dein Plugin kann aber auch noch von anderen Plugins abhängig sein.</p>
+					<p>Folgeden optionale Bibliotheksabhängigkeiten werden nur benötigt, wenn du in deinem Plugin Drittanbieterbibliotheken verwendest, die MArtIn nicht kennt.</p>
+					<pre>
+<code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">runtime</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">library</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"my_plugin"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"classes/"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"code"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-title">doc</span> <span class="hljs-attribute">caption</span>=<span class="hljs-value">"Plugin documentation"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-title">doc-ref</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"doc/index.html"</span> <span class="hljs-attribute">caption</span>=<span class="hljs-value">"javadoc"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-title">doc</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-title">library</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">library</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"java2html"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"lib/java2html.jar"</span>
+	<span class="hljs-attribute">type</span>=<span class="hljs-value">"code"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-title">doc</span> <span class="hljs-attribute">caption</span>=<span class="hljs-value">"Java2html Library by Markus Gebhard"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-title">doc-ref</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"docs/java2html"</span>
+		<span class="hljs-attribute">caption</span>=<span class="hljs-value">"java2html library"</span>/&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-title">doc</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-title">library</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">library</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"resources"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"res/"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"resources"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">runtime</span>&gt;</span></code>
+					</pre>
+					<ul>
+					<li><strong>my_plugin</strong> bezieht sich auf die kompilierten Klassen des Plugins selbst. Das Attribut “path” bestimmt, wo die Dateien sich relativ zum plugin.xml befinden, und “type” definiert, dass es Java-Code ist.</li>
+					<li><strong>ava2html</strong> bezieht sich auf eine externe Bibliothek, dessen Klassen sich in lib/java2html.jar befinden.</li>
+					</ul>
+					<p>Als nächstes deklarierst du die Metadaten, welche MArtIn über das Plugin benötgt.</p>
+					<pre>
+<code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">extension</span> <span class="hljs-attribute">plugin-id</span>=<span class="hljs-value">"ch.zhaw.psit4.martin.api"</span>
+	<span class="hljs-attribute">point-id</span>=<span class="hljs-value">"MartinPlugin"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"02f013c8-73f3-46ab-962c-acdcde9ac3e3"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"class"</span>
+	<span class="hljs-attribute">value</span>=<span class="hljs-value">"ch.orgamization.psit4.martin.myplugin.PluginServiceImplementation"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"name"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Mein Plugin"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"description"</span>
+	<span class="hljs-attribute">value</span>=<span class="hljs-value">"Mein super tolles Plugin."</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"author"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Hans Muster"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"e-mail"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"mymail@gmail.com"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"homepage"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"http://www.mypage.com"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-title">parameter</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"date"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"13.05.2016"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">extension</span>&gt;</span></code>
+					</pre>
+					<ul>
+					<li><strong>id</strong> zufällig generierte UUID (unter folgendem <a href="https://www.uuidgenerator.net/">Link</a> generieren).</li>
+					<li><strong>point-id</strong> definiert das Interface, welches das Plugin aus MArtIn implementiert.</li>
+					<li><strong>class</strong> verweist auf die PluginService-Interface-Implementation aus ch.zhaw.psit4.martin.api.</li>
+					<li><strong>name</strong> ist die Bezeichnung des Plugins.</li>
+					<li><strong>describtion</strong> (optional) Der Wert enthält eine kurze Beschreibung deines Plugins.</li>
+					<li><strong>author</strong> (optional) enthält die Bezeichnung des Autors.</li>
+					<li><strong>e-mail</strong> (optional) enthält die E-Mail-Addresse des Autors.</li>
+					<li><strong>homepage</strong> (optional, momentan ungenutzt) enthält die Web-Addresse des Autors oder des Plugins.</li>
+					<li><strong>date</strong> (optional) enthält das Veröffentlichungsdatum deines Plugins.</li>
+					</ul>
+					<h3><a id="Datei_functionsjson_154"></a>Datei functions.json</h3>
+					<p>Jedes Plugin benötigt die Funktionsdatei functions.json, welche die angebotenen Funktionalitäten des Plugin beschreibt. Wichtig ist, dass functions.json folgendes Format aufweist:</p>
+					<pre>
+<code class="language-json">{
+	"<span class="hljs-attribute">Functions</span>": <span class="hljs-value">[
+		{
+			"<span class="hljs-attribute">Name</span>": <span class="hljs-value"><span class="hljs-string">"hallo"</span></span>,
+			"<span class="hljs-attribute">Describtion</span>": <span class="hljs-value"><span class="hljs-string">"Greets the greeter."</span></span>,
+			"<span class="hljs-attribute">Keywords</span>": <span class="hljs-value">[
+				<span class="hljs-string">"hello"</span>,
+				<span class="hljs-string">"greetings"</span>,
+				<span class="hljs-string">"hey"</span>,
+				<span class="hljs-string">"howdy"</span>,
+				<span class="hljs-string">"hi-ya"</span>,
+				<span class="hljs-string">"whazzup"</span>
+			]</span>,
+			"<span class="hljs-attribute">Parameter</span>": <span class="hljs-value">[
+				{
+					"<span class="hljs-attribute">Name</span>": <span class="hljs-value"><span class="hljs-string">"Name"</span></span>,
+					"<span class="hljs-attribute">Required</span>": <span class="hljs-value"><span class="hljs-string">"false"</span></span>,
+					"<span class="hljs-attribute">Type</span>": <span class="hljs-value"><span class="hljs-string">"ch.zhaw.psit4.martin.api.types.Person"</span></span>,
+					"<span class="hljs-attribute">Tokens-regex</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+				</span>}
+			]</span>,
+			"<span class="hljs-attribute">Examples</span>": <span class="hljs-value">[
+				<span class="hljs-string">"Hello MArtIn!"</span>,
+				<span class="hljs-string">"Howdy partner!"</span>
+			]
+		</span>}
+	]
+</span>}</code>
+					</pre>
+					<ul>
+					<li><strong>Functions</strong> enthält eine Liste der Funktionen, welche das Plugin anbietet.</li>
+					<li><strong>Name</strong> enthält den Namen der Funktion, die vom Plugin angeboten wird (unter <code>String feature</code> bei der Initialisierung übergeben).</li>
+					<li><strong>Describtion</strong> enthält die Beschreibung der angebotenen Pluginfunktionalität.</li>
+					<li><strong>Parameter</strong> enthält eine Liste an <code>IMartinType</code> Parametern, welche das Plugin potenziel beim Start benötigt. <code>Name</code> definiert den Namen, <code>Required</code> ob der Parameter benötigt ist, <code>Type</code> den Java Klassentypen aus der API und <code>Tokens-regex</code> ein einem regulären Ausdruck ähnliches Konstrukt (<strong>WIP</strong>).</li>
+					<li><strong>Keywords</strong> enthält Wörter sortiert nach Relevanz, welche MArtIn helfen, die Plugin-Funktion zu finden.</li>
+					<li><strong>Examples</strong> enthält Beispielsätze, die eingegeben werden können, um die Funktion aufzurufen.</li>
+					</ul>
+					<h2><a id="PluginAnbindung_129"></a>Plugin-Anbindung</h2>
+<p>Ein MArtIn Plugin kann momentan auf zwei verschiedene Arten installiert werden.</p>
+<ul>
+<li>Manuell über Git-Push (für Entwickler)</li>
+<li>Mit dem Installer auf der Webseite (für Community-Entwickler)</li>
+</ul>
+<p>Um dein fertiges Plugin einbinden zu können, muss es strukturellen Konventionen entsprechen. Nachdem dein Plugin gebuildet wurde, musst du nur noch die folgenden Schritte befolgen:</p>
+<h3><a id="Ordnerstruktur_9"></a>Ordnerstruktur</h3>
+<p>MArtIn’s Pluginbibliothek schreibt Plugins eine feste Ordnerstruktur vor.</p>
+<pre><code class="language-java">./ch.orgamization.psit4.martin.meinplugin
+  |_ /classes
+  |_ /lib
+  |  |_ java2html.jar
+  |_ /res
+  |  |_ functions.json
+  |  |_ resource2.xml
+  |_ plugin.xml
+  |_ plugin.dtd
+</code></pre>
+<ul>
+<li><strong>classes</strong> enthält alle übersetzten Java-Klassen des Plugins. Diese werden zur Laufzeit von MArtIn aufgerufen.</li>
+<li><strong>lib</strong> (optional) vorhanden, sofern du unbekannte Java-Bibliotheken verwendest. Diese müssen in plugin.xml erwähnt werden.</li>
+<li><strong>res</strong> definiert Ressourcen, die das Plugin benötigt, welche nicht in Code-Form verteilt werden können/sollten.</li>
+<li><strong>functions.json</strong> enthält Suchbegriffe, die mit den Plugin-Funktionen assoziiert werden sollten und die Funktionsdefinitionen des Plugins.</li>
+<li><strong>plugin.xml</strong> (wichtigstes Element) ermöglicht den Zugriff von MArtIn auf das Plugin.</li>
+<li><strong>plugin.dtd</strong> optional, da auch die online Version referenziert werden kann &quot;<a href="http://jpf.sourceforge.net/plugin_1_0.dtd">http://jpf.sourceforge.net/plugin_1_0.dtd</a>&quot;</li>
+</ul>
+<h3><a id="Manuell_30"></a>Manuell</h3>
+<p>Wenn das Plugin in die Ordnerstuktur gebracht wurde, kannst du es so wie es ist oder als ZIP-Archiv hochladen. Ab diesem Moment kann MArtIn das Plugin verwenden.</p>
+<h3><a id="Installer_33"></a>Installer</h3>
+<p>Die Installation per Installer ist einfach, du musst nur das Plugin als Java-Projekt übersetzen und auf die Upload Seite wechseln. Am besten ist ein Maven-Projekt, es spielt jedoch keine Rolle, <strong>solange am Ende alle benötigten Files im jar-File  enthalten sind</strong> (im Zweifelsfall <code>mvn clean install package</code> verwenden).</p>
+<p><a href="https://www.dropbox.com/s/e403xeoyi2z3mwb/MArtIn_Main.png?dl=1"><img width="100%" src="https://www.dropbox.com/s/e403xeoyi2z3mwb/MArtIn_Main.png?dl=1" alt="Aktivitätsdiagramm für Plugin call"></a></p>
+<p>Anschliessend folgende Schritte ausführen:</p>
+<p><a href="https://www.dropbox.com/s/ls7kz3q464oevmh/MArtIn_Install.png?dl=1"><img width="100%" src="https://www.dropbox.com/s/ls7kz3q464oevmh/MArtIn_Install.png?dl=1" alt="Aktivitätsdiagramm für Plugin call"></a></p>
+<ol>
+<li><strong>Pluginname</strong>: beliebiges Wort, Zahlen erlaubt, keine Sonderzeichen, Gross-/Kleinschreibung wird beachtet</li>
+<li>Erstellte <code>.jar</code>-Datei auf dem PC auswählen</li>
+<li>Datei uploaden</li>
+</ol>
+<p>Nach dem Upload wird dir MArtIn eine Rückmeldung zum Erfolg oder Misserfolg des Uploads geben.</p>
+					<h2><a id="MartinTypes_Datentypen_194"></a>MartinTypes (Datentypen)</h2>
+					<p>Folgende MartinTypes existieren und können als Parameter für Funktionen deines Plugins angefordert werden:</p>
+					<h3><a id="Location_198"></a>MLocation</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Ort</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					<tr>
+					<td>String</td>
+					<td>formattedAddress</td>
+					<td>Vollständige Adresse</td>
+					<td>ja</td>
+					<td>Der Ort ist auf einer Karte zu finden.</td>
+					</tr>
+					<tr>
+					<td>double</td>
+					<td>latitude</td>
+					<td>Längengrad</td>
+					<td>ja</td>
+					<td>Der Ort ist auf einer Karte zu finden.</td>
+					</tr>
+					<tr>
+					<td>double</td>
+					<td>longitude</td>
+					<td>Breitengrad</td>
+					<td>ja</td>
+					<td>Der Ort ist auf einer Karte zu finden.</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>What’s the weather in <strong>Zürich</strong>?</li>
+					<li>The ZHAW is located in the city of <strong>Winterthur</strong>.</li>
+					<li>I need to pass the <strong>Bahnhofstrasse</strong> every day when I go to school.</li>
+					</ul>
+					<h3><a id="Timestamp_210"></a>MTimestamp</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Datum und/oder Uhrzeit</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					<tr>
+					<td>DateTime</td>
+					<td>datetime</td>
+					<td>Nach POSIX aufgelöster Timestamp</td>
+					<td>ja</td>
+					<td>Es wurden Wörter wie <em>tomorrow</em>, <em>yesterday</em> oder Datumsformate allgemeiner Norm verwendet.</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>I need to implement my user stories <strong>tomorrow morning at 2 pm</strong>.</li>
+					<li>I forgot my password <strong>last year</strong>, so I needed to call the IT-Support to restore it for me.</li>
+					<li>We’ll meet at <strong>30.04.2016 14:00</strong> at the checkout of the airport.</li>
+					</ul>
+					<h3><a id="Number_220"></a>MNumber</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Zahl</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					<tr>
+					<td>int</td>
+					<td>integerNumber</td>
+					<td>Zahl ohne Nachkommastellen</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					<tr>
+					<td>double</td>
+					<td>doubleNumber</td>
+					<td>Zahl mit Nachkommastellen</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>Thank you <strong>thousand</strong> times!</li>
+					<li>My girlfriend threw away her old shoes. I think I counted at least <strong>15</strong> pairs I would not throw away.</li>
+					<li>The answer to life the universe and everything is <strong>forty two</strong>.</li>
+					</ul>
+					<h3><a id="Person_231"></a>MPerson</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Name einer Person</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>Hello, my name is <strong>Chuck Norris</strong>.</li>
+					<li>Today I met <strong>Donald Trump</strong> hanging out with <strong>Barack Obama</strong> and <strong>Putin</strong>. They were laughing alot.</li>
+					<li>“Hello Martin, today I met <strong>Mark Zuckerberg</strong> and and he’s such an awsome guy!”</li>
+					</ul>
+					<h3><a id="Duration_240"></a>MDuration</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Zeitspanne</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>I was waiting for my new iPhone for <strong>at least two weeks</strong>.</li>
+					<li>A person cannot work for <strong>more than 9 hours a day</strong>.</li>
+					<li>I was waiting on the terminal for <strong>at least two hours</strong>.</li>
+					</ul>
+					<h3><a id="Organization_249"></a>MOrganization</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Organisation, Unternehmen oder Institution</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li><strong>ZHAW School of Engineering</strong> is a great institution.</li>
+					<li>Can you get me some fresh bread from <strong>Migros</strong>?</li>
+					<li><strong>SBB</strong> is an organization specialized in public transportation.</li>
+					</ul>
+					<h3><a id="Set_258"></a>MSet</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Allgemein</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>I need to pass the <strong>Zoo</strong> every day when I go to school.</li>
+					</ul>
+					<h3><a id="Percent_265"></a>MPercent</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Prozentangabe</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>I need to go to work <strong>every day</strong>.</li>
+					<li><strong>Every second person</strong> is suffering from AIDS.</li>
+					</ul>
+					<h3><a id="Ordinal_273"></a>MOrdinal</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Reihenfolge, Reihe oder Ordnung</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>I will be the <strong>first</strong> in this race!</li>
+					<li>Will the <strong>third</strong> world war fought in the cyberspace?</li>
+					</ul>
+					<h3><a id="Misc_281"></a>MMisc</h3>
+					<table class="table table-striped table-bordered">
+					<thead>
+					<tr>
+					<th>Datentyp</th>
+					<th>Feldname</th>
+					<th>Beschreibung</th>
+					<th>optional</th>
+					<th>Voraussetzung</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<td>String</td>
+					<td>data</td>
+					<td>Allgemein</td>
+					<td>nein</td>
+					<td>-</td>
+					</tr>
+					</tbody>
+					</table>
+					<ul>
+					<li>I need to pass the <strong>Zoo</strong> every day when I go to school.</li>
+					</ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <!-- jQuery -->
+    <script src="js/all/jquery-1.12.0.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/all/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/all/jquery.easing.min.js"></script>
+    <script src="js/all/scrolling-nav.js"></script>
+
+    <!-- MArtIn general used Scripts -->
+    <script src="js/all/common.js"></script>
+
+    <!-- MArtIn Admin Application -->
+    <script src="js/admin/plugin_list.js"></script>
+    <script src="js/admin/admin_setup.js"></script>
+
+
+
+
+</body>
+
+</html>

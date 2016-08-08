@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin PUBLIC "-//JPF//Java Plug-in Manifest 1.0" "http://jpf.sourceforge.net/plugin_1_0.dtd">
+<!-- DTD available under MArtIn\distributable\plugin.dtd -->
+<plugin id="ch.zhaw.psit4.martin.timerplugin" version="0.0.1">
+ 	<requires>
+		<import plugin-id="ch.zhaw.psit4.martin.api" />
+	</requires>
+	<runtime>
+		<library id="timer_plugin" path="classes/" type="code">
+			<doc caption="API documentation">
+				<doc-ref path="doc/index.html" caption="javadoc" />
+			</doc>
+		</library>
+		<library type="resources" path="res/" id="resources" />
+	</runtime>
+ 
+	<extension plugin-id="ch.zhaw.psit4.martin.api" point-id="MartinPlugin" id="f4fe33f1-fbf2-4cc3-ae0e-42b25392293e">
+		<parameter id="class" value="ch.zhaw.psit4.martin.timerplugin.TimerPlugin" />
+		<parameter id="name" value="Timer Plugin" />
+		<parameter id="description" value="A plugin to schedule things." />
+		<parameter id="author" value="Flepp Simon" />
+		<parameter id="e-mail" value="simonflepp@gmail.com" />
+		<parameter id="date" value="2016-05-25" />
+	</extension>
+</plugin>
